@@ -1,0 +1,129 @@
+# 📊 Data Dictionary / Data Description
+
+## 📌 Overview
+
+This document describes the structure, fields, and definitions of the dataset used in the E-Commerce Intelligence Dashboard project.
+
+The data follows a **star schema model**, consisting of one fact table and multiple dimension tables.
+
+---
+
+# 🧱 Data Model Structure
+
+## 🔹 Fact Table: Orders
+
+| Column Name | Data Type | Description                            |
+| ----------- | --------- | -------------------------------------- |
+| order_id    | Integer   | Unique identifier for each order       |
+| order_date  | Date      | Date when the order was placed         |
+| customer_id | Integer   | Unique identifier for customer         |
+| product_id  | Integer   | Unique identifier for product          |
+| revenue     | Decimal   | Total revenue generated from the order |
+
+---
+
+## 🔹 Dimension Table: Customers
+
+| Column Name | Data Type | Description                         |
+| ----------- | --------- | ----------------------------------- |
+| customer_id | Integer   | Unique identifier for each customer |
+| city        | Text      | Customer's city location            |
+| signup_date | Date      | Date when the customer registered   |
+
+---
+
+## 🔹 Dimension Table: Products
+
+| Column Name    | Data Type | Description                                |
+| -------------- | --------- | ------------------------------------------ |
+| product_id     | Integer   | Unique identifier for product              |
+| product_name   | Text      | Name of the product                        |
+| category       | Text      | Product category (e.g., Furniture, Beauty) |
+| price_category | Text      | Price segment (Low, Medium, High)          |
+| rating         | Decimal   | Average customer rating (1–5 scale)        |
+
+---
+
+## 🔹 Dimension Table: DateTable
+
+| Column Name  | Data Type | Description                 |
+| ------------ | --------- | --------------------------- |
+| date         | Date      | Continuous date range       |
+| year         | Integer   | Year                        |
+| month        | Text      | Month name (Jan, Feb, etc.) |
+| month_number | Integer   | Numeric month (1–12)        |
+| year_month   | Text      | Combined Year-Month format  |
+
+---
+
+# 🔗 Relationships
+
+| From Table | Column      | To Table  | Column      | Relationship |
+| ---------- | ----------- | --------- | ----------- | ------------ |
+| Orders     | customer_id | Customers | customer_id | Many-to-One  |
+| Orders     | product_id  | Products  | product_id  | Many-to-One  |
+| Orders     | order_date  | DateTable | date        | Many-to-One  |
+
+---
+
+# 📐 Calculated Fields & Measures
+
+## Key Measures
+
+```DAX
+Total Revenue = SUM(Orders[revenue])
+
+Total Orders = COUNT(Orders[order_id])
+
+Total Customers = DISTINCTCOUNT(Orders[customer_id])
+
+AOV = DIVIDE([Total Revenue], [Total Orders])
+```
+
+---
+
+## Time Intelligence Measures
+
+```DAX
+Revenue PM = 
+CALCULATE(
+    [Total Revenue],
+    DATEADD(DateTable[date], -1, MONTH)
+)
+
+Revenue Growth % = 
+DIVIDE(
+    [Total Revenue] - [Revenue PM],
+    [Revenue PM]
+)
+```
+
+---
+
+# ⚠️ Data Notes & Assumptions
+
+* Revenue is calculated at the order level
+* Each order is assumed to represent a single transaction
+* Product ratings are averaged and static
+* No missing values assumed after preprocessing
+
+---
+
+# 🚀 Limitations
+
+* No website traffic data (limits true conversion rate calculation)
+* No cost/profit data (limits profitability analysis)
+* No session-level user behavior tracking
+
+---
+
+# 📌 Usage
+
+This dataset is used to:
+
+* Analyze sales performance
+* Understand customer behavior
+* Evaluate product-level performance
+* Generate actionable business insights
+
+---

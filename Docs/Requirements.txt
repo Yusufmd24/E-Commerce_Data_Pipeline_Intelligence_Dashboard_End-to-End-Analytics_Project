@@ -1,0 +1,98 @@
+# 📌 Project Requirements (Tools & Usage)
+
+## 🎯 Objective
+
+To build an end-to-end E-commerce Analytics Dashboard using the right tools across data collection, processing, storage, and visualization.
+
+---
+
+# 🛠️ Tools & Their Usage
+
+## 📥 Data Collection
+
+* **Python**
+
+  * Used to extract data from APIs or websites
+  * Libraries:
+
+    * pandas → data handling
+    * requests → API calls
+    * BeautifulSoup → web scraping
+
+---
+
+## 🧹 Data Cleaning & Preparation
+
+### **Excel**
+
+* Initial data cleaning and quick inspection
+* Tasks:
+
+  * Removing duplicates
+  * Formatting columns
+  * Basic filtering and sorting
+
+---
+
+### **SQL (Microsoft SQL Server)**
+
+* Used for structured data transformation and querying
+* Tasks:
+
+  * Joining multiple tables (Orders, Customers, Products)
+  * Aggregations (SUM, COUNT, GROUP BY)
+  * Filtering and creating analysis-ready datasets
+
+---
+
+## 🗄️ Data Storage
+
+* **CSV / Excel Files**
+
+  * Used for storing cleaned datasets
+
+* **SQL Database (Optional Advanced)**
+
+  * Stores structured data for scalable querying
+
+---
+
+## 🧠 Data Modeling & Analysis
+
+### **DAX (Data Analysis Expressions)**
+
+* Used inside Power BI
+* Tasks:
+
+  * Creating measures (Revenue, AOV)
+  * Time intelligence (MoM Growth)
+  * Customer metrics
+
+---
+
+## 📊 Data Visualization
+
+* **Microsoft Power BI**
+* Used to:
+
+  * Build interactive dashboards
+  * Create KPI cards and charts
+  * Apply slicers and filters
+  * Generate business insights
+
+---
+
+## 🔄 Data Pipeline Workflow
+
+```text
+Python → Excel → SQL → Power BI
+```
+
+* Python → Data extraction
+* Excel → Quick cleaning
+* SQL → Transformation & querying
+* Power BI → Visualization & insights
+
+
+
+---
