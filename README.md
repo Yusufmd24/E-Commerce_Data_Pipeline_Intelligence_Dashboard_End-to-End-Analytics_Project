@@ -221,10 +221,11 @@ The analysis suggests clear next steps:
 ---
 ## 📁 Project Structure
 
-data → raw and processed datasets
-dashboard → Power BI (.pbix) file
-docs → requirements, insights, documentation
-assets → dashboard screenshots
+```text
+data/       → Raw and processed datasets
+dashboard/  → Power BI (.pbix) file
+docs/       → Documentation and insights
+assets/     → Dashboard screenshots
 
 ---
 
