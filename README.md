@@ -29,6 +29,10 @@ This project follows a structured data pipeline:
 
 Each step is handled using a specific tool, chosen for its strength.
 
+⚙️ Technical Architecture / Workflow
+
+<img width="1774" height="887" alt="Tech Arch of Ecomm Project" src="https://github.com/user-attachments/assets/10aa8047-ecdd-4af5-b24b-ec58d2f1dd2c" />
+
 ---
 
 ## 🐍 Data Collection — Python
@@ -130,7 +134,17 @@ Evaluating which products generate value and how quality impacts sales
 * Interactive filtering
 
 ---
+## 📈 Key KPIs
 
+| KPI | Description |
+|---|---|
+| Total Revenue | Overall business revenue generated |
+| Average Order Value (AOV) | Revenue generated per order |
+| Repeat Customer Rate | Customer retention indicator |
+| Revenue Growth % | Month-over-month growth |
+| Revenue per Customer | Average customer value |
+
+---
 ## 🧠 What the Analysis Reveals
 
 At a surface level, the business appears strong — revenue is growing, customers are returning, and high-value products are performing well.
@@ -138,8 +152,9 @@ At a surface level, the business appears strong — revenue is growing, customer
 But deeper analysis reveals structural patterns.
 
 Growth exists, but it is uneven and driven by specific segments rather than broad expansion.
-A single category contributes a large share of revenue, making the business dependent on it.
-Even more critically, a small group of products dominates total sales.
+Electronics contributes approximately 47% of total revenue despite representing a much smaller share of total products, creating category concentration risk.
+
+Additionally, the top 10 products generate a disproportionately large share of sales, indicating heavy dependence on a limited product group.
 
 Customer behavior suggests strong retention, but raises questions about new user acquisition.
 Geographically, demand is concentrated in major cities, leaving expansion opportunities untapped.
@@ -172,18 +187,38 @@ The analysis suggests clear next steps:
 
 ---
 
-## 🛠️ Skills Demonstrated
+## 🧠 Analytical & Technical Capabilities Demonstrated
 
-This project showcases:
-
-* **Python** → Data extraction and structuring
-* **Excel** → Data cleaning and validation
-* **SQL** → Data transformation and querying
-* **Power BI** → Data modeling and visualization
-* **DAX** → Business metric creation and time intelligence
+- End-to-end analytics pipeline design
+- Data extraction and preprocessing
+- Relational SQL transformations
+- Star schema data modeling
+- KPI development using DAX
+- Business intelligence dashboarding
+- Executive-focused insight communication
+- Business performance interpretation
 
 ---
+## ⚡ Challenges Addressed
 
+- Handling inconsistent raw data formats
+- Maintaining schema consistency across datasets
+- Designing scalable SQL transformations
+- Preventing duplicate records during preprocessing
+- Building an efficient Power BI star schema
+- Translating business questions into measurable KPIs
+
+---
+## 🔮 Future Improvements
+
+- Automated ETL orchestration
+- Cloud database integration
+- Real-time sales tracking
+- Predictive customer churn analysis
+- Inventory forecasting models
+- Advanced customer segmentation
+
+---
 ## 📁 Project Structure
 
 data → raw and processed datasets
