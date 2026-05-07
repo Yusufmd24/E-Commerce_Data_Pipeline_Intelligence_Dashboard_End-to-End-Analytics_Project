@@ -248,6 +248,6 @@ to uncover **not just what is happening, but why it matters**.
 
 **Yusuf M**
 
-Aspiring Data Analyst | SQL • Power BI • Python
+Data Analyst | SQL • Power BI • Python
 
 ---
