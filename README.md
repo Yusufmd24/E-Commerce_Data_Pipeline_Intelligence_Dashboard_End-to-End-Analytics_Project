@@ -221,12 +221,12 @@ The analysis suggests clear next steps:
 ---
 ## 📁 Project Structure
 
-
+```text
 data/       → Raw and processed datasets
 dashboard/  → Power BI (.pbix) file
 docs/       → Documentation and insights
 assets/     → Dashboard screenshots
-
+```
 ---
 
 ## 🎯 Final Perspective
