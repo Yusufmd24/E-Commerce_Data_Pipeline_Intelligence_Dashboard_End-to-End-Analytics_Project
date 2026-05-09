@@ -189,16 +189,16 @@ At a surface level, the business looks healthy — revenue is growing, customers
 
 But the deeper signal is structural concentration, not broad-based growth.
 
-* Category Dependency
+* Category Dependency:
 Electronics contributes approximately 47% of total revenue while representing a much smaller share of total SKUs. A single category carrying nearly half the business creates fragility — a supply disruption, a price correction, or a competitive entrant in that one category can meaningfully damage total revenue.
 
-* Product Concentration
+* Product Concentration:
 The top 10 products account for a disproportionate share of total sales volume. The business is not being carried by a broad catalogue — it is being carried by a few high-performers. This pattern typically indicates low discoverability of the wider product range.
 
-* Retention vs. Acquisition
+* Retention vs. Acquisition:
 Repeat customer metrics are strong — but that signal can mask stagnating new customer acquisition. If cohort analysis shows repeat rate is high while new-user volume is flat or declining, the business is deepening loyalty within a static pool rather than expanding it.
 
-* Geographic Concentration
+* Geographic Concentration:
 Revenue clusters heavily in major metro areas. Tier-2 and tier-3 city demand appears underdeveloped relative to population size — a signal of either low marketing penetration or fulfillment/logistics gaps in those markets.
 
 
@@ -264,12 +264,11 @@ Schema mismatches between source files          Python pre-validation enforces c
 ---
 ## 🔮 Roadmap
 
- * Apache Airflow — Schedule and monitor ETL pipeline runs end-to-end
- * Azure SQL / Snowflake — Migrate from local SQL Server to cloud warehouse
- * Power BI Incremental Refresh — Enable near-real-time sales tracking without full dataset reload
- * Prophet / scikit-learn — Build predictive churn model using order recency and frequency signals
- * Power BI Dataflows — Centralise transformation logic away from individual report files
- * Customer cohort analysis — Track new-user acquisition trends separately from retention metrics
+* Customer Cohort Analysis: Build a SQL-based acquisition cohort model to track new-user growth separately from repeat-purchase behaviour. The current metrics make both look healthy — this would confirm whether retention is genuinely strong or simply masking a stagnating acquisition funnel.
+  
+* Apache Airflow — Pipeline Orchestration: Schedule and monitor each pipeline stage (Python → SQL → Power BI refresh) as dependent tasks with failure alerting. Business question: can this pipeline run and self-monitor daily without manual intervention?
+ 
+* Prophet / scikit-learn — Churn Prediction: Use order recency, frequency, and category signals to score customers by churn probability. Business question: which repeat customers are at risk of lapsing, and how early can the business intervene?
 
 ---
 ## 📁 Project Structure
