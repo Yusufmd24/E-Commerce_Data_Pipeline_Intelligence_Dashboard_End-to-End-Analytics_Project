@@ -201,7 +201,7 @@ That combination creates both short-term strength and long-term fragility. The m
 ## 🚀 Where the Data Points
 
 Based on the analysis, the following actions are directionally supported:
-
+````
 Priority                         ActionSignal                                     Behind It
 
 🔴 High                Diversify category revenue mix4                     7% electronics dependency
@@ -210,7 +210,7 @@ Priority                         ActionSignal                                   
 🟡 Medium               Expand into tier-2 / tier-3 cities                Geographic revenue clustering
 🟢 Low                Improve funnel-stage data capture              Gaps in conversion and attribution data
 
-
+````
 ---
 
 ## 🧠 Analytical & Technical Capabilities Demonstrated
