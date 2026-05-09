@@ -9,7 +9,9 @@ An end-to-end e-commerce analytics pipeline built across Python → Excel → SQ
 The pipeline surfaces three high-signal business findings:
 
 🔴 Category concentration risk — Electronics drives ~47% of revenue from a small fraction of total SKUs
+
 🟡 Retention vs. acquisition imbalance — Strong repeat-purchase rates masking weak new customer growth
+
 🟢 Untapped geographic demand — Revenue heavily concentrated in metros; tier-2 markets underdeveloped
 
 
