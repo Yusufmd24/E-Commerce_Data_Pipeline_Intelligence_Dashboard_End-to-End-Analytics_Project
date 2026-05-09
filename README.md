@@ -82,6 +82,7 @@ Design decision: Pushing transformation logic into SQL keeps Power BI lean and r
 Inside Power BI, a star schema was designed to optimise both query performance and DAX accuracy.
 
 Schema structure:
+````
                     ┌─────────────┐
                     │  dim_Date   │
                     └──────┬──────┘
@@ -89,7 +90,7 @@ Schema structure:
 ┌──────────────┐    ┌──────┴──────┐    ┌───────────────┐
 │ dim_Customer ├────┤ fact_Orders ├────┤  dim_Product  │
 └──────────────┘    └─────────────┘    └───────────────┘
-
+````
 * fact_Orders — transactional grain; one row per order line
 * dim_Customer, dim_Product, dim_Date — conformed dimensions with surrogate keys
 * All relationships set to single-direction filtering for predictable DAX context
@@ -155,11 +156,11 @@ Evaluating which products generate value and how quality impacts sales
 
 | KPI | Description |
 |---|---|
-| Total Revenue = Overall business revenue generated |
-| Average Order Value (AOV) = Revenue generated per order |
-| Repeat Customer Rate = Customer retention indicator |
-| Revenue Growth % = Month-over-month growth |
-| Revenue per Customer = Average customer value |
+| Total Revenue | Overall business revenue generated |
+| Average Order Value (AOV) | Revenue generated per order |
+| Repeat Customer Rate | Customer retention indicator |
+| Revenue Growth % | Month-over-month growth |
+| Revenue per Customer | Average customer value |
 
 ---
 ## 🔍 What the Data Reveals
