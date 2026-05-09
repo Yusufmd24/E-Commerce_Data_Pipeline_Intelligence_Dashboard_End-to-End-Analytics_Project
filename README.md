@@ -141,13 +141,13 @@ Understanding how revenue evolves over time and what drives it.
 
 ### Customer Behavior
 
-![Customer Dashboard](assets/Customer-Page.png)
+![Customer Dashboard](Assets/Customer-Page.png)
 
 Analyzing retention, repeat purchases, and geographic distribution
 
 ### Product Performance
 
-![Product Dashboard](assets/Products-Page.png)
+![Product Dashboard](Assets/Products-Page.png)
 
 Evaluating which products generate value and how quality impacts sales
 
