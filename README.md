@@ -42,9 +42,9 @@ Each step is handled using a specific tool, chosen for its strength.
 Raw datasets (Orders, Customers, Products) were ingested and pre-validated using Python before touching any downstream system.
 What was done:
 
-Loaded multi-source CSVs using Pandas; enforced schema consistency across files
-Applied null-key detection and type validation to catch upstream data quality issues early
-Exported clean, typed DataFrames to standardised CSVs for SQL ingestion
+Loaded multi-source CSVs using Pandas; enforced schema consistency across files.
+Applied null-key detection and type validation to catch upstream data quality issues early.
+Exported clean, typed DataFrames to standardised CSVs for SQL ingestion.
 
 Design decision: Python absorbs all acquisition-side messiness so the SQL layer can stay focused purely on transformation logic — not remedial cleaning.
 
