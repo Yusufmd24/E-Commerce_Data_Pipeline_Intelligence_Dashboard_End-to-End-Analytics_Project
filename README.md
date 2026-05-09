@@ -222,10 +222,30 @@ The analysis suggests clear next steps:
 ## 📁 Project Structure
 
 ```text
-data/       → Raw and processed datasets
-dashboard/  → Power BI (.pbix) file
-docs/       → Documentation and insights
-assets/     → Dashboard screenshots
+ecommerce-pipeline/
+│
+├── data/
+│   ├── raw/                  # Original source files (unmodified)
+│   └── processed/            # Post-Python, post-Excel cleaned files
+│
+├── python/
+│   └── data_collection.py    # Ingestion, schema validation, export
+│
+├── sql/
+│   ├── transformations.sql   # Joins, aggregations, business logic views
+│   └── schema.sql            # Table definitions and index strategy
+│
+├── dashboard/
+│   └── ecommerce_report.pbix # Power BI report file
+│
+├── assets/
+│   ├── tech-architecture.png
+│   ├── sales-performance.png
+│   ├── customer-behavior.png
+│   └── product-performance.png
+│
+└── docs/
+    └── insight-summary.md    # Plain-language findings for non-technical stakeholders
 ```
 ---
 
