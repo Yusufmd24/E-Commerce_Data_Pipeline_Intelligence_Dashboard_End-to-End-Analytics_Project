@@ -42,9 +42,9 @@ Each step is handled using a specific tool, chosen for its strength.
 Raw datasets (Orders, Customers, Products) were ingested and pre-validated using Python before touching any downstream system.
 What was done:
 
-Loaded multi-source CSVs using Pandas; enforced schema consistency across files.
-Applied null-key detection and type validation to catch upstream data quality issues early.
-Exported clean, typed DataFrames to standardised CSVs for SQL ingestion.
+* Loaded multi-source CSVs using Pandas; enforced schema consistency across files.
+* Applied null-key detection and type validation to catch upstream data quality issues early.
+* Exported clean, typed DataFrames to standardised CSVs for SQL ingestion.
 
 Design decision: Python absorbs all acquisition-side messiness so the SQL layer can stay focused purely on transformation logic — not remedial cleaning.
 
@@ -55,9 +55,9 @@ Design decision: Python absorbs all acquisition-side messiness so the SQL layer 
 Before committing data to the database, a lightweight Excel validation pass was used for rapid human inspection.
 What was done:
 
-Removed duplicate rows and corrected inconsistent category labels
-Standardised date formats to ISO 8601 (YYYY-MM-DD) across all sources
-Ran range checks on revenue and quantity fields to catch outliers before load
+* Removed duplicate rows and corrected inconsistent category labels.
+* Standardised date formats to ISO 8601 (YYYY-MM-DD) across all sources.
+* Ran range checks on revenue and quantity fields to catch outliers before load.
 
 Design decision: Excel acts as a fast-feedback checkpoint — catching issues visually that are harder to spot programmatically, especially in small datasets.
 
@@ -68,10 +68,10 @@ Design decision: Excel acts as a fast-feedback checkpoint — catching issues vi
 The SQL layer is where raw records become business-ready datasets. All joins, aggregations, and business logic are encoded here — not inside the BI tool.
 What was done:
 
-Joined Orders, Customers, and Products on validated foreign keys
-Built aggregated views for revenue by category, by month, and by customer segment
-Applied window functions for MoM growth calculations and running totals
-Created filtered views for repeat customers vs. one-time buyers
+* Joined Orders, Customers, and Products on validated foreign keys.
+* Built aggregated views for revenue by category, by month, and by customer segment.
+* Applied window functions for MoM growth calculations and running totals.
+* Created filtered views for repeat customers vs. one-time buyers.
 
 Design decision: Pushing transformation logic into SQL keeps Power BI lean and report-layer calculations fast. Any analyst can re-run or audit the transformation independently of the dashboard.
 
@@ -90,9 +90,9 @@ Schema structure:
 │ dim_Customer ├────┤ fact_Orders ├────┤  dim_Product  │
 └──────────────┘    └─────────────┘    └───────────────┘
 
-fact_Orders — transactional grain; one row per order line
-dim_Customer, dim_Product, dim_Date — conformed dimensions with surrogate keys
-All relationships set to single-direction filtering for predictable DAX context
+* fact_Orders — transactional grain; one row per order line
+* dim_Customer, dim_Product, dim_Date — conformed dimensions with surrogate keys
+* All relationships set to single-direction filtering for predictable DAX context
 
 Design decision: A properly structured star schema prevents the silent calculation errors that arise when analysts build DAX on top of poorly modelled flat tables.
 
@@ -168,16 +168,16 @@ At a surface level, the business looks healthy — revenue is growing, customers
 
 But the deeper signal is structural concentration, not broad-based growth.
 
-Category Dependency
+* Category Dependency
 Electronics contributes approximately 47% of total revenue while representing a much smaller share of total SKUs. A single category carrying nearly half the business creates fragility — a supply disruption, a price correction, or a competitive entrant in that one category can meaningfully damage total revenue.
 
-Product Concentration
+* Product Concentration
 The top 10 products account for a disproportionate share of total sales volume. The business is not being carried by a broad catalogue — it is being carried by a few high-performers. This pattern typically indicates low discoverability of the wider product range.
 
-Retention vs. Acquisition
+* Retention vs. Acquisition
 Repeat customer metrics are strong — but that signal can mask stagnating new customer acquisition. If cohort analysis shows repeat rate is high while new-user volume is flat or declining, the business is deepening loyalty within a static pool rather than expanding it.
 
-Geographic Concentration
+* Geographic Concentration
 Revenue clusters heavily in major metro areas. Tier-2 and tier-3 city demand appears underdeveloped relative to population size — a signal of either low marketing penetration or fulfillment/logistics gaps in those markets.
 
 
@@ -188,10 +188,10 @@ Revenue clusters heavily in major metro areas. Tier-2 and tier-3 city demand app
 This is not merely a high-performing business — it is a highly concentrated one.
 Its revenue depends on:
 
-A few key products
-One dominant category
-A loyal but potentially limited customer base
-A narrow geographic footprint
+* A few key products
+* One dominant category
+* A loyal but potentially limited customer base
+* A narrow geographic footprint
 
 That combination creates both short-term strength and long-term fragility. The metrics look good today precisely because of the concentration. The same concentration becomes the risk when any single pillar shifts.
 
@@ -216,18 +216,18 @@ Priority                         ActionSignal                                   
 
 Technical
 
-End-to-end analytics pipeline design (Python → SQL → Power BI)
-Data acquisition, pre-validation, and schema enforcement
-Relational SQL transformation and aggregation logic
-Star schema data modelling with conformed dimensions
-Context-safe DAX measure development
-Business intelligence dashboarding with executive-layer storytelling
+* End-to-end analytics pipeline design (Python → SQL → Power BI)
+* Data acquisition, pre-validation, and schema enforcement
+* Relational SQL transformation and aggregation logic
+* Star schema data modelling with conformed dimensions
+* Context-safe DAX measure development
+* Business intelligence dashboarding with executive-layer storytelling
 
 Analytical
 
-KPI framework design tied to specific business questions
-Concentration risk identification from distribution patterns
-Insight communication calibrated to decision-makers, not data teams
+* KPI framework design tied to specific business questions
+* Concentration risk identification from distribution patterns
+* Insight communication calibrated to decision-makers, not data teams
 
 ---
 ## ⚡ Challenges Addressed
@@ -242,12 +242,12 @@ Insight communication calibrated to decision-makers, not data teams
 ---
 ## 🔮 Roadmap
 
- Apache Airflow — Schedule and monitor ETL pipeline runs end-to-end
- Azure SQL / Snowflake — Migrate from local SQL Server to cloud warehouse
- Power BI Incremental Refresh — Enable near-real-time sales tracking without full dataset reload
- Prophet / scikit-learn — Build predictive churn model using order recency and frequency signals
- Power BI Dataflows — Centralise transformation logic away from individual report files
- Customer cohort analysis — Track new-user acquisition trends separately from retention metrics
+ * Apache Airflow — Schedule and monitor ETL pipeline runs end-to-end
+ * Azure SQL / Snowflake — Migrate from local SQL Server to cloud warehouse
+ * Power BI Incremental Refresh — Enable near-real-time sales tracking without full dataset reload
+ * Prophet / scikit-learn — Build predictive churn model using order recency and frequency signals
+ * Power BI Dataflows — Centralise transformation logic away from individual report files
+ * Customer cohort analysis — Track new-user acquisition trends separately from retention metrics
 
 ---
 ## 📁 Project Structure
