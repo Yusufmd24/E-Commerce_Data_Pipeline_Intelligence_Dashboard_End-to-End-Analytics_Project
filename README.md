@@ -66,14 +66,14 @@ Design decision: Python absorbs all acquisition-side messiness so the SQL layer 
 
 ## 📊 Layer 2 — Data Validation (Excel)
 
-Before committing data to the database, a lightweight Excel validation pass was used for rapid human inspection.
+Before committing data to the database, a structured Excel validation pass was introduced as a deliberate business checkpoint — not a technical workaround.
 What was done:
 
 * Removed duplicate rows and corrected inconsistent category labels.
 * Standardised date formats to ISO 8601 (YYYY-MM-DD) across all sources.
 * Ran range checks on revenue and quantity fields to catch outliers before load.
 
-Design decision: Excel acts as a fast-feedback checkpoint — catching issues visually that are harder to spot programmatically, especially in small datasets.
+Design decision: In real-world pipelines, data doesn't move from acquisition to warehouse without a business sign-off layer. Excel serves that role here — a format accessible to a non-technical ops, finance, or category manager who needs to verify the data reflects operational reality before it drives reporting. This mirrors how data validation actually works in cross-functional teams, where the SQL engineer and the business owner are rarely the same person.
 
 ---
 
@@ -314,6 +314,8 @@ It shows how data can be:
 * Interpreted
 
 to uncover **not just what is happening, but why it matters**.
+
+"Given more time, I'd build a customer acquisition cohort model in SQL to separate retention performance from new-user growth — the current metrics make both look healthy, but they're measuring different health."
 
 ---
 
