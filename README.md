@@ -136,7 +136,8 @@ The dashboard is structured into three perspectives:
 ### Sales Performance
 
 Understanding how revenue evolves over time and what drives it.
-![Sales Dashboard](Assets/1. Executive Overview.png)
+
+![Sales Dashboard](Assets/Executive-Overview.png)
 
 ### Customer Behavior
 
