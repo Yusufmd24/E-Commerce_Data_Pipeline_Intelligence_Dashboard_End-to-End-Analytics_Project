@@ -43,6 +43,11 @@ Each step is handled using a specific tool, chosen for its strength.
 <img width="1774" height="887" alt="Tech Arch of Ecomm Project" src="https://github.com/user-attachments/assets/10aa8047-ecdd-4af5-b24b-ec58d2f1dd2c" />
 
 ---
+📸 Dashboard Preview
+
+![Sales Dashboard](Assets/Executive-Overview.png)
+
+---
 ⚙️ Layer-by-Layer Breakdown
 
 
