@@ -252,14 +252,15 @@ Analytical
 
 ---
 ## ⚡ Challenges Addressed
+````
+Challenge                                          Approach Taken
 
-- Handling inconsistent raw data formats
-- Maintaining schema consistency across datasets
-- Designing scalable SQL transformations
-- Preventing duplicate records during preprocessing
-- Building an efficient Power BI star schema
-- Translating business questions into measurable KPIs
-
+Duplicate order records in raw data             Deduplication using composite key (order_id + customer_id + timestamp) before SQL load
+Inconsistent date formats across sources        Standardised to ISO 8601 in Excel validation layer; enforced with SQL CAST on ingestion
+Slow Power BI refresh on large joins            Pre-aggregated views built in SQL; report layer reads views, not raw tables
+DAX measure drift across filter contexts        Explicit CALCULATE + REMOVEFILTERS scoping on all revenue measures
+Schema mismatches between source files          Python pre-validation enforces column types and required fields before any downstream load
+````
 ---
 ## 🔮 Roadmap
 
