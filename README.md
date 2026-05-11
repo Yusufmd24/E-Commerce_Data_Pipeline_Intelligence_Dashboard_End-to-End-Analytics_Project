@@ -196,7 +196,7 @@ The next analytical question this data points to: a **customer acquisition cohor
 
 For complete technical implementation details:
 
-➡️ [View Full Technical Documentation](Docs/technical-readme.md)
+➡️ [View Full Technical Documentation](Docs/technical-readme)
 
 ---
 
