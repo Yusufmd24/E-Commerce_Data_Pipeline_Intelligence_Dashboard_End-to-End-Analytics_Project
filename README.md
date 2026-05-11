@@ -39,7 +39,7 @@ A growing e-commerce business needed clarity on **why revenue looked healthy but
 
 ## ⚙️ Architecture
 
-![Tech Architecture](assets/tech-architecture.png)
+![Tech Architecture](Assets/Technical-Architecture.png)
 
 ```
 Raw Data ──► Python ──► Excel ──► SQL Server ──► Power BI
