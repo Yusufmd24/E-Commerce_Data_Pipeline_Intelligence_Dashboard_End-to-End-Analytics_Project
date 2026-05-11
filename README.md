@@ -1,102 +1,94 @@
 # 💼 E-Commerce Data Pipeline & Intelligence Dashboard
 
-🚀 An end-to-end analytics project that transforms raw e-commerce data into business decisions — combining **Python, SQL, and Power BI** into a single workflow.
+> An end-to-end analytics project that transforms raw e-commerce data into business decisions — combining Python, SQL, and Power BI into a single workflow.
+
+[![Python](https://img.shields.io/badge/Python-3.10-blue?logo=python)](https://python.org)
+[![SQL Server](https://img.shields.io/badge/SQL-MS%20SQL%20Server-CC2927?logo=microsoftsqlserver)](https://www.microsoft.com/sql-server)
+[![Power BI](https://img.shields.io/badge/Power%20BI-Dashboard-F2C811?logo=powerbi)](https://powerbi.microsoft.com)
+[![Excel](https://img.shields.io/badge/Excel-Validation-217346?logo=microsoftexcel)](https://microsoft.com/excel)
 
 ---
 
-## 📌 Project Overview
-An end-to-end e-commerce analytics pipeline built across Python → Excel → SQL Server → Power BI, transforming raw, multi-source transactional data into a boardroom-ready intelligence dashboard.
-The pipeline surfaces three high-signal business findings:
+## 📌 Business Problem
 
-🔴 Category concentration risk — Electronics drives ~47% of revenue from a small fraction of total SKUs
+A growing e-commerce business needed clarity on **why revenue looked healthy but growth felt fragile**. This pipeline was built to move from raw transactional records to structured business intelligence — and surface the concentration risks hiding beneath strong top-line metrics.
 
-🟡 Retention vs. acquisition imbalance — Strong repeat-purchase rates masking weak new customer growth
-
-🟢 Untapped geographic demand — Revenue heavily concentrated in metros; tier-2 markets underdeveloped
-
-
-This project was designed not just to show what happened — but to explain why it matters and what to do next.
-
----
-Tech Stack Used:
-
-![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![SQL Server](https://img.shields.io/badge/SQL_Server-CC2927?style=for-the-badge&logo=microsoftsqlserver&logoColor=white)
-![Power BI](https://img.shields.io/badge/Power_BI-F2C811?style=for-the-badge&logo=powerbi&logoColor=black)
-![Excel](https://img.shields.io/badge/Excel-217346?style=for-the-badge&logo=microsoftexcel&logoColor=white)
-![Pandas](https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white)
+**Dataset:** ~50,000 synthetic order records across 3 source files (Orders, Customers, Products), simulating 18 months of e-commerce activity.
 
 ---
 
-## 🧱 From Raw Data to Insight (End-to-End Workflow)
+## 🔍 Key Findings
 
-This project follows a structured data pipeline:
-
-Raw Data  ──►  Python        ──►  Excel         ──►  SQL Server     ──►  Power BI
-               Acquisition        Validation         Transformation       Intelligence
-               & Structuring      & Cleaning         & Modeling           Dashboard
-
-Each step is handled using a specific tool, chosen for its strength.
-
-⚙️ Technical Architecture / Workflow
-
-<img width="1774" height="887" alt="Tech Arch of Ecomm Project" src="https://github.com/user-attachments/assets/10aa8047-ecdd-4af5-b24b-ec58d2f1dd2c" />
+| Signal | Finding |
+|--------|---------|
+| 🔴 Category risk | Electronics drives ~47% of revenue from a fraction of total SKUs |
+| 🟡 Acquisition gap | Strong repeat-purchase rates masking weak new customer growth |
+| 🟢 Geographic opportunity | Revenue concentrated in metros; tier-2 markets underdeveloped |
 
 ---
-📸 Dashboard Preview
 
+## 🛠️ Tech Stack
+
+![Python](https://img.shields.io/badge/-Python-3776AB?logo=python&logoColor=white&style=flat)
+![SQL Server](https://img.shields.io/badge/-SQL%20Server-CC2927?logo=microsoftsqlserver&logoColor=white&style=flat)
+![Power BI](https://img.shields.io/badge/-Power%20BI-F2C811?logo=powerbi&logoColor=black&style=flat)
+![Excel](https://img.shields.io/badge/-Excel-217346?logo=microsoftexcel&logoColor=white&style=flat)
+![Pandas](https://img.shields.io/badge/-Pandas-150458?logo=pandas&logoColor=white&style=flat)
+
+---
+
+## ⚙️ Architecture
+
+![Tech Architecture](assets/tech-architecture.png)
+
+```
+Raw Data ──► Python ──► Excel ──► SQL Server ──► Power BI
+            Schema    Business   Transformation  Intelligence
+            & Validation  Sign-off   & Modeling   Dashboard
+```
+
+> Transformation logic was intentionally centralised in SQL to keep the BI layer lightweight, auditable, and performant.
+
+---
+
+## 📸 Dashboard Preview
+
+### Sales Performance
 ![Sales Dashboard](Assets/Executive-Overview.png)
 
----
-⚙️ Layer-by-Layer Breakdown
+### Customer Behaviour
+![Customer Dashboard](Assets/Customer-Page.png)
 
-
-## 🐍 Layer 1 — Data Collection (Python)
-
-Raw datasets (Orders, Customers, Products) were ingested and pre-validated using Python before touching any downstream system.
-What was done:
-
-* Loaded multi-source CSVs using Pandas; enforced schema consistency across files.
-* Applied null-key detection and type validation to catch upstream data quality issues early.
-* Exported clean, typed DataFrames to standardised CSVs for SQL ingestion.
-
-Design decision: Python absorbs all acquisition-side messiness so the SQL layer can stay focused purely on transformation logic — not remedial cleaning.
+### Product Performance
+![Product Dashboard](Assets/Products-Page.png)
 
 ---
 
-## 📊 Layer 2 — Data Validation (Excel)
+## 📈 Key KPIs
 
-Before committing data to the database, a structured Excel validation pass was introduced as a deliberate business checkpoint — not a technical workaround.
-What was done:
-
-* Removed duplicate rows and corrected inconsistent category labels.
-* Standardised date formats to ISO 8601 (YYYY-MM-DD) across all sources.
-* Ran range checks on revenue and quantity fields to catch outliers before load.
-
-Design decision: In real-world pipelines, data doesn't move from acquisition to warehouse without a business sign-off layer. Excel serves that role here — a format accessible to a non-technical ops, finance, or category manager who needs to verify the data reflects operational reality before it drives reporting. This mirrors how data validation actually works in cross-functional teams, where the SQL engineer and the business owner are rarely the same person.
-
----
-
-## 🗄️ Layer 3 — Data Transformation (MS SQL Server)
-
-The SQL layer is where raw records become business-ready datasets. All joins, aggregations, and business logic are encoded here — not inside the BI tool.
-What was done:
-
-* Joined Orders, Customers, and Products on validated foreign keys.
-* Built aggregated views for revenue by category, by month, and by customer segment.
-* Applied window functions for MoM growth calculations and running totals.
-* Created filtered views for repeat customers vs. one-time buyers.
-
-Design decision: Pushing transformation logic into SQL keeps Power BI lean and report-layer calculations fast. Any analyst can re-run or audit the transformation independently of the dashboard.
+| KPI | Description |
+|-----|-------------|
+| Total Revenue | Overall business revenue |
+| Average Order Value (AOV) | Revenue per order |
+| Repeat Customer Rate | Retention indicator |
+| Revenue Growth % MoM | Month-over-month growth |
+| Revenue per Customer | Average customer value |
 
 ---
 
-## 🧠 Layer 4 — Data Modeling (Power BI)
+## 🧱 Technical Workflow
 
-Inside Power BI, a star schema was designed to optimise both query performance and DAX accuracy.
+| Layer | Tool | Key Work |
+|-------|------|----------|
+| 1 | Python | Schema validation, null-key detection, typed CSV exports |
+| 2 | Excel | Duplicate removal, ISO 8601 date standardisation, business validation checkpoint |
+| 3 | SQL Server | Joins, aggregations, window functions, repeat-customer views |
+| 4 | Power BI | Star schema modelling, single-direction relationships, KPI dashboards |
+| 5 | DAX | Filter-safe measures for revenue, growth, retention, and AOV |
 
-Schema structure:
-````
+**Star Schema (Power BI):**
+
+```
                     ┌─────────────┐
                     │  dim_Date   │
                     └──────┬──────┘
@@ -104,176 +96,67 @@ Schema structure:
 ┌──────────────┐    ┌──────┴──────┐    ┌───────────────┐
 │ dim_Customer ├────┤ fact_Orders ├────┤  dim_Product  │
 └──────────────┘    └─────────────┘    └───────────────┘
-````
-* fact_Orders — transactional grain; one row per order line
-* dim_Customer, dim_Product, dim_Date — conformed dimensions with surrogate keys
-* All relationships set to single-direction filtering for predictable DAX context
+```
 
-Design decision: A properly structured star schema prevents the silent calculation errors that arise when analysts build DAX on top of poorly modelled flat tables.
+> A star schema with conformed dimensions and surrogate keys prevents the silent DAX calculation errors that arise from poorly modelled flat tables.
 
----
+**DAX — Core Measures:**
 
-## 🧮 Layer 5 — Business Logic (DAX)
-
-DAX was used to translate business questions into context-aware, filter-safe measures.
-Core measures built:
-
-````
--- Total Revenue (base measure)
-Total Revenue = SUMX(fact_Orders, fact_Orders[Quantity] * fact_Orders[Unit Price])
-
+```dax
 -- Month-over-Month Revenue Growth
 Revenue Growth % MoM =
-VAR CurrentMonth = [Total Revenue]
-VAR PriorMonth   = CALCULATE([Total Revenue], DATEADD(dim_Date[Date], -1, MONTH))
-RETURN DIVIDE(CurrentMonth - PriorMonth, PriorMonth, 0)
+VAR PriorMonth = CALCULATE([Total Revenue], DATEADD(dim_Date[Date], -1, MONTH))
+RETURN DIVIDE([Total Revenue] - PriorMonth, PriorMonth, 0)
+```
 
--- Repeat Customer Rate
-Repeat Customer Rate =
-DIVIDE(
-    COUNTROWS(FILTER(VALUES(fact_Orders[Customer ID]),
-        CALCULATE(DISTINCTCOUNT(fact_Orders[Order ID])) > 1)),
-    DISTINCTCOUNT(fact_Orders[Customer ID]),
-    0
-)
-````
-All measures use explicit CALCULATE scoping to prevent filter context bleed — a common source of incorrect KPI values in complex Power BI models.
+Other measures built: `Repeat Customer Rate`, `Average Order Value`, `Revenue per Customer` — all using explicit `CALCULATE` scoping to prevent filter context bleed.
 
 ---
 
-## 📊 Visualization — Power BI
+## 💡 Business Insights
 
-The final layer transforms data into a decision-making tool.
+- **Electronics** contributes ~47% of total revenue, creating meaningful category concentration risk
+- Revenue is driven by a **small subset of SKUs**, indicating weak catalogue discoverability
+- **Repeat purchase rates are strong**, but new-customer acquisition appears comparatively stagnant
+- Revenue clusters in **major metro areas**, with tier-2 and tier-3 cities underdeveloped relative to population
 
-The dashboard is structured into three perspectives:
+**Recommended Actions:**
 
-### Sales Performance
-
-Understanding how revenue evolves over time and what drives it.
-
-![Sales Dashboard](Assets/Executive-Overview.png)
-
-### Customer Behavior
-
-![Customer Dashboard](Assets/Customer-Page.png)
-
-Analyzing retention, repeat purchases, and geographic distribution
-
-### Product Performance
-
-![Product Dashboard](Assets/Products-Page.png)
-
-Evaluating which products generate value and how quality impacts sales
-
-👉 Focus was placed on:
-
-* Clear visual hierarchy
-* KPI-driven storytelling
-* Interactive filtering
-
----
-## 📈 Key KPIs
-
-| KPI | Description |
-|---|---|
-| Total Revenue | Overall business revenue generated |
-| Average Order Value (AOV) | Revenue generated per order |
-| Repeat Customer Rate | Customer retention indicator |
-| Revenue Growth % | Month-over-month growth |
-| Revenue per Customer | Average customer value |
-
----
-## 🔍 What the Data Reveals
-
-At a surface level, the business looks healthy — revenue is growing, customers are returning, and top products are performing strongly.
-
-But the deeper signal is structural concentration, not broad-based growth.
-
-* Category Dependency:
-Electronics contributes approximately 47% of total revenue while representing a much smaller share of total SKUs. A single category carrying nearly half the business creates fragility — a supply disruption, a price correction, or a competitive entrant in that one category can meaningfully damage total revenue.
-
-* Product Concentration:
-The top 10 products account for a disproportionate share of total sales volume. The business is not being carried by a broad catalogue — it is being carried by a few high-performers. This pattern typically indicates low discoverability of the wider product range.
-
-* Retention vs. Acquisition:
-Repeat customer metrics are strong — but that signal can mask stagnating new customer acquisition. If cohort analysis shows repeat rate is high while new-user volume is flat or declining, the business is deepening loyalty within a static pool rather than expanding it.
-
-* Geographic Concentration:
-Revenue clusters heavily in major metro areas. Tier-2 and tier-3 city demand appears underdeveloped relative to population size — a signal of either low marketing penetration or fulfillment/logistics gaps in those markets.
-
+| Priority | Recommendation |
+|----------|---------------|
+| 🔴 High | Diversify category revenue mix |
+| 🔴 High | Invest in new customer acquisition |
+| 🟡 Medium | Improve product discoverability |
+| 🟡 Medium | Expand geographic reach into tier-2 cities |
+| 🟢 Low | Improve funnel-stage and attribution data capture |
 
 ---
 
-## 🚨 The Core Business Risk
+## ⚡ Challenges Solved
 
-This is not merely a high-performing business — it is a highly concentrated one.
-Its revenue depends on:
-
-* A few key products
-* One dominant category
-* A loyal but potentially limited customer base
-* A narrow geographic footprint
-
-That combination creates both short-term strength and long-term fragility. The metrics look good today precisely because of the concentration. The same concentration becomes the risk when any single pillar shifts.
+| Challenge | Approach |
+|-----------|----------|
+| Duplicate order records | Deduplication via composite key (`order_id + customer_id + timestamp`) before SQL load |
+| Inconsistent date formats | Standardised to ISO 8601 in Excel; enforced with `CAST` on SQL ingestion |
+| Slow Power BI refresh | Pre-aggregated SQL views; report layer reads views, not raw tables |
+| DAX filter context drift | Explicit `CALCULATE + REMOVEFILTERS` scoping on all revenue measures |
+| Schema mismatches across files | Python pre-validation enforces column types before downstream load |
 
 ---
 
-## 🚀 Where the Data Points
-
-Based on the analysis, the following actions are directionally supported:
-````
-Priority                         ActionSignal                                     Behind It
-
-🔴 High                Diversify category revenue mix4                     7% electronics dependency
-🔴 High                Invest in new customer acquisition            Strong retention, flat new-user signal
-🟡 Medium                Improve product discoverability                   Top-10 product concentration
-🟡 Medium               Expand into tier-2 / tier-3 cities                Geographic revenue clustering
-🟢 Low                Improve funnel-stage data capture              Gaps in conversion and attribution data
-
-````
----
-
-## 🧠 Analytical & Technical Capabilities Demonstrated
-
-Technical
-
-* End-to-end analytics pipeline design (Python → SQL → Power BI)
-* Data acquisition, pre-validation, and schema enforcement
-* Relational SQL transformation and aggregation logic
-* Star schema data modelling with conformed dimensions
-* Context-safe DAX measure development
-* Business intelligence dashboarding with executive-layer storytelling
-
-Analytical
-
-* KPI framework design tied to specific business questions
-* Concentration risk identification from distribution patterns
-* Insight communication calibrated to decision-makers, not data teams
-
----
-## ⚡ Challenges Addressed
-````
-Challenge                                          Approach Taken
-
-Duplicate order records in raw data             Deduplication using composite key (order_id + customer_id + timestamp) before SQL load
-Inconsistent date formats across sources        Standardised to ISO 8601 in Excel validation layer; enforced with SQL CAST on ingestion
-Slow Power BI refresh on large joins            Pre-aggregated views built in SQL; report layer reads views, not raw tables
-DAX measure drift across filter contexts        Explicit CALCULATE + REMOVEFILTERS scoping on all revenue measures
-Schema mismatches between source files          Python pre-validation enforces column types and required fields before any downstream load
-````
----
 ## 🔮 Roadmap
 
-* Customer Cohort Analysis: Build a SQL-based acquisition cohort model to track new-user growth separately from repeat-purchase behaviour. The current metrics make both look healthy — this would confirm whether retention is genuinely strong or simply masking a stagnating acquisition funnel.
-  
-* Apache Airflow — Pipeline Orchestration: Schedule and monitor each pipeline stage (Python → SQL → Power BI refresh) as dependent tasks with failure alerting. Business question: can this pipeline run and self-monitor daily without manual intervention?
- 
-* Prophet / scikit-learn — Churn Prediction: Use order recency, frequency, and category signals to score customers by churn probability. Business question: which repeat customers are at risk of lapsing, and how early can the business intervene?
+**Customer Cohort Analysis** — SQL-based acquisition model to track new-user growth separately from repeat-purchase behaviour. Current metrics make both look healthy; cohort tracking separates them.
+
+**Pipeline Orchestration (Apache Airflow)** — Schedule and monitor each pipeline stage as dependent tasks with failure alerting.
+
+**Churn Prediction (Prophet / scikit-learn)** — Score customers by churn probability using recency, frequency, and category signals.
 
 ---
+
 ## 📁 Project Structure
 
-```text
+```
 ecommerce-pipeline/
 │
 ├── data/
@@ -299,31 +182,23 @@ ecommerce-pipeline/
 └── docs/
     └── insight-summary.md    # Plain-language findings for non-technical stakeholders
 ```
+
 ---
 
 ## 🎯 Final Perspective
 
-This project demonstrates more than tool usage.
+This project demonstrates how raw transactional data can be transformed into actionable business intelligence through structured engineering, analytical modelling, and executive-focused reporting.
 
-It shows how data can be:
-
-* Collected
-* Structured
-* Transformed
-* Interpreted
-
-to uncover **not just what is happening, but why it matters**.
-
-"Given more time, I'd build a customer acquisition cohort model in SQL to separate retention performance from new-user growth — the current metrics make both look healthy, but they're measuring different health."
+The next analytical question this data points to: a **customer acquisition cohort model** in SQL — built to separate retention performance from new-user growth. The current metrics make both look healthy, but they are measuring different kinds of health.
 
 ---
 
 ## 👤 Author
 
-**Md Yusuf **
+**Md Yusuf**
+Data Analyst | SQL · Power BI · Python · Excel
 
-Data Analyst | SQL • Power BI • Python • Excel
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?logo=linkedin)](https://linkedin.com/in/YOUR-PROFILE-SLUG)
+[![GitHub](https://img.shields.io/badge/GitHub-Portfolio-181717?logo=github)](https://github.com/YOUR-USERNAME)
 
-If this project was useful or interesting, a ⭐ on the repo is appreciated.
-
----
+*If this project was useful or interesting, a ⭐ on the repo is appreciated.*
