@@ -192,6 +192,13 @@ This project demonstrates how raw transactional data can be transformed into act
 The next analytical question this data points to: a **customer acquisition cohort model** in SQL — built to separate retention performance from new-user growth. The current metrics make both look healthy, but they are measuring different kinds of health.
 
 ---
+## 📘 Detailed Documentation
+
+For complete technical implementation details:
+
+➡️ [View Full Technical Documentation](Docs/technical-readme.md)
+
+---
 
 ## 👤 Author
 
